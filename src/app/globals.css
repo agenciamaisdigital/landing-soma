@@ -1,0 +1,325 @@
+@import "tailwindcss";
+
+/* =========================================================
+   DESIGN SYSTEM — SŌMA
+   Tecnologia para igrejas
+   Fundamentos globais
+   ========================================================= */
+
+:root {
+  /* Cores da marca */
+  --brand-primary: #0f5c6e; /* Petroleum Blue */
+  --brand-primary-hover: #0c4d5c;
+  --brand-primary-dark: #123b5d; /* Deep Blue */
+  --brand-primary-soft: #e4eef0;
+
+  --brand-sand: #ede7dc; /* Warm Sand */
+
+  /* Neutros */
+  --neutral-graphite: #23252b;
+  --neutral-off-white: #f8f7f4;
+  --neutral-white: #ffffff;
+  --neutral-gray: #6b6f76;
+  --neutral-light-gray: #e5e3dd;
+
+  /* Cores semânticas */
+  --background: #f8f7f4;
+  --foreground: #23252b;
+  --surface: #ffffff;
+  --surface-subtle: #ede7dc;
+  --surface-dark: #123b5d;
+  --surface-dark-elevated: #0f2f47;
+
+  --text-primary: #23252b;
+  --text-secondary: #6b6f76;
+  --text-inverse: #f8f7f4;
+  --text-inverse-muted: #c3cdd1;
+
+  --border-default: #e2ded3;
+  --border-dark: rgba(248, 247, 244, 0.14);
+
+  /* Espaçamentos */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+
+  /* Containers */
+  --container-compact: 40rem;
+  --container-text: 47.5rem;
+  --container-default: 75rem;
+  --container-wide: 85rem;
+
+  /* Margens laterais */
+  --page-gutter: 1.25rem;
+
+  /* Raios */
+  --radius-button: 0.75rem;
+  --radius-card-sm: 1rem;
+  --radius-card: 1.25rem;
+  --radius-feature: 2rem;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-soft: 0 4px 16px rgba(35, 37, 43, 0.06);
+  --shadow-card: 0 12px 32px rgba(35, 37, 43, 0.08);
+  --shadow-elevated: 0 24px 64px rgba(35, 37, 43, 0.12);
+
+  /* Movimento */
+  --duration-fast: 180ms;
+  --duration-base: 240ms;
+  --duration-slow: 500ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/*
+ * Integração dos tokens com o Tailwind CSS 4.
+ * Permite usar classes como:
+ * bg-brand, text-text-secondary, rounded-card e shadow-card.
+ */
+@theme inline {
+  /* Fontes */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-heading-brand);
+
+  /* Marca */
+  --color-brand: var(--brand-primary);
+  --color-brand-hover: var(--brand-primary-hover);
+  --color-brand-dark: var(--brand-primary-dark);
+  --color-brand-soft: var(--brand-primary-soft);
+  --color-brand-sand: var(--brand-sand);
+
+  /* Fundos e superfícies */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-elevated: var(--surface-dark-elevated);
+
+  /* Textos */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-inverse: var(--text-inverse);
+  --color-text-inverse-muted: var(--text-inverse-muted);
+
+  /* Bordas */
+  --color-border: var(--border-default);
+  --color-border-dark: var(--border-dark);
+
+  /* Raios */
+  --radius-button: var(--radius-button);
+  --radius-card-sm: var(--radius-card-sm);
+  --radius-card: var(--radius-card);
+  --radius-feature: var(--radius-feature);
+  --radius-pill: var(--radius-pill);
+
+  /* Sombras */
+  --shadow-soft: var(--shadow-soft);
+  --shadow-card: var(--shadow-card);
+  --shadow-elevated: var(--shadow-elevated);
+}
+
+/* =========================================================
+   NORMALIZAÇÃO GLOBAL
+
+   Precisa ficar em @layer base: estilos sem camada vencem os
+   utilitarios do Tailwind (que vivem em @layer utilities), o que
+   faria `margin: 0` anular qualquer `mt-*` em titulos e paragrafos.
+   ========================================================= */
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--background);
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-brand), Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img,
+  picture,
+  svg,
+  video,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   MARCA — ō distintivo
+   ========================================================= */
+
+.brand-wordmark {
+  font-family: var(--font-heading-brand), Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  text-transform: lowercase;
+}
+
+.brand-macron {
+  position: relative;
+}
+
+.brand-macron::before {
+  content: "";
+  position: absolute;
+  top: -0.22em;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.62em;
+  height: 0.1em;
+  border-radius: var(--radius-pill);
+  background: var(--brand-primary);
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+   ========================================================= */
+
+@layer base {
+  :focus-visible {
+    outline: 3px solid var(--brand-primary);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--brand-primary);
+    color: var(--neutral-white);
+  }
+}
+
+/* =========================================================
+   UTILITÁRIOS ESTRUTURAIS
+   ========================================================= */
+
+.container-page {
+  width: min(calc(100% - (var(--page-gutter) * 2)),
+      var(--container-default));
+  margin-inline: auto;
+}
+
+.container-wide {
+  width: min(calc(100% - (var(--page-gutter) * 2)),
+      var(--container-wide));
+  margin-inline: auto;
+}
+
+.container-text {
+  width: min(calc(100% - (var(--page-gutter) * 2)),
+      var(--container-text));
+  margin-inline: auto;
+}
+
+.container-compact {
+  width: min(calc(100% - (var(--page-gutter) * 2)),
+      var(--container-compact));
+  margin-inline: auto;
+}
+
+/* =========================================================
+   RESPONSIVIDADE INICIAL
+   ========================================================= */
+
+@media (min-width: 48rem) {
+  :root {
+    --page-gutter: 1.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --page-gutter: 2rem;
+  }
+}
+
+/* =========================================================
+   Navegação por Âncoras
+   ========================================================= */
+
+@layer base {
+  section {
+    scroll-margin-top: 5.5rem;
+  }
+}
+
+/* =========================================================
+   MOVIMENTO REDUZIDO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
